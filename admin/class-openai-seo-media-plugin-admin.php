@@ -217,5 +217,29 @@ class Openai_Seo_Media_Plugin_Admin {
         }
     }
 
+    public function register_bulk_actions($bulk_actions) {
+        $bulk_actions['generate_seo'] = 'Generar SEO con OpenAI';
+        return $bulk_actions;
+    }
+
+    public function handle_bulk_action($redirect_to, $doaction, $post_ids) {
+        if ($doaction !== 'generate_seo') {
+            return $redirect_to;
+        }
+
+        foreach ($post_ids as $post_id) {
+            $this->update_media_seo($post_id);
+        }
+
+        $redirect_to = add_query_arg('bulk_seo_generated', count($post_ids), $redirect_to);
+        return $redirect_to;
+    }
+
+    public function admin_notices() {
+        if (!empty($_REQUEST['bulk_seo_generated'])) {
+            $count = intval($_REQUEST['bulk_seo_generated']);
+            printf('<div id="message" class="updated fade"><p>SEO generado para %s imágenes.</p></div>', $count);
+        }
+    }
 
 }

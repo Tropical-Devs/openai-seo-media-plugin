@@ -4,7 +4,7 @@
  * Description: Genera títulos, descripciones, alt, SEO-friendly para los archivos multimedia usando la API de OpenAI.
  * Version: 1.0
  * Author: Dagoberto Medina
- * Author URI: https://yoviajocr.com
+ * Author URI: https://tropicaldevs.com
  */
 
 if (!defined('ABSPATH')) {
