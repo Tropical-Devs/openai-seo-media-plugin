@@ -31,6 +31,9 @@ class Openai_Seo_Media_Plugin {
         $this->loader->add_filter('media_row_actions', $plugin_admin, 'add_generate_seo_button', 10, 2);
         $this->loader->add_action('wp_ajax_generate_seo_content', $plugin_admin, 'generate_seo_content_ajax');
         $this->loader->add_action('add_meta_boxes', $plugin_admin, 'add_seo_meta_box');
+        $this->loader->add_filter('bulk_actions-upload', $plugin_admin, 'register_bulk_actions');
+        $this->loader->add_filter('handle_bulk_actions-upload', $plugin_admin, 'handle_bulk_action', 10, 3);
+        $this->loader->add_action('admin_notices', $plugin_admin, 'admin_notices');
     }
 
     public function run() {
@@ -44,4 +47,5 @@ class Openai_Seo_Media_Plugin {
     public function get_version() {
         return $this->version;
     }
+
 }
