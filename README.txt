@@ -1,6 +1,5 @@
 === OpenAI SEO Media Generator ===
 Contributors: Dagoberto Medina
-Donate link: https://your-donation-link.com
 Tags: SEO, OpenAI, media, WordPress
 Requires at least: 5.0
 Tested up to: 6.2
