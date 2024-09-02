@@ -33,9 +33,21 @@ A WordPress plugin that automates SEO-friendly title, alt text, and description 
 
 == Usage ==
 
+1. **Upload the Plugin:** Upload the ZIP file from the plugin to your WordPress site.
+2. **Configure the API Key:** Go to `Settings > OpenAI SEO Media` or directly to `wp-admin/options-general.php?page=openai-seo-media-generator` and paste the API key you generated from the OpenAI dashboard.
+3. **Access the Media Library:** Navigate to the Media Library.
+4. **Switch to List Mode:** Set the Media Library to list view mode.
+5. **Generate SEO for Images:**
+   - **Single Image:** Click "Generate SEO" next to the image you want to optimize.
+   - **Bulk Action:** Select multiple images, choose "Generate SEO with OpenAI" from the bulk actions dropdown, and click "Apply" to generate SEO for all selected images at once.
+
 **From the Media Library:** In the media list, you will see a new "Generate SEO" button next to each media file. Click this button to automatically generate SEO-friendly titles, descriptions, and alt text.
 
 **From the Media Editor:** When you open a media file to edit it, you'll find a new section in the right-hand panel that allows you to generate SEO content directly from the media editor. If you haven’t configured your API key, the plugin will show a warning.
+
+== Guide and Explanation ==
+
+For a detailed guide on how this plugin was developed and how to use it, check out my Medium post: [How I Automated SEO for WordPress Media Using OpenAI](https://medinazdago.medium.com/how-i-automated-seo-for-wordpress-media-using-openai-41592533d253)
 
 == Frequently Asked Questions ==
 
@@ -48,10 +60,6 @@ You can get an API key by creating an account at [OpenAI's website](https://plat
 = What are the costs associated with using this plugin? =
 The costs depend on the number of tokens used. With $1, you can process 74 to 95 images using GPT-4o or 148 to 190 images using GPT-4o-mini.
 
-== Screenshots ==
-
-1. Media Library with "Generate SEO" button.
-2. Media Editor with SEO generation option.
 
 == Changelog ==
 
