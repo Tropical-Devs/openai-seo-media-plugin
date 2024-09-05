@@ -2,13 +2,13 @@
 Contributors: Dagoberto Medina
 Tags: SEO, OpenAI, media, WordPress
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.6
 Requires PHP: 7.2
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A WordPress plugin that automates SEO-friendly title, alt text, and description generation for media files using OpenAI's API. Supports GPT-4o and GPT-4o-mini models for customizable performance and accuracy.
+Automatically generate SEO-friendly titles, alt texts, and descriptions for media files using OpenAI's API.
 
 == Description ==
 
