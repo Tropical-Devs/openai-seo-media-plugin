@@ -117,12 +117,19 @@ class Openai_Seo_Media_Plugin_Admin {
     }
 
     public function generate_seo_content_ajax() {
-        if (isset($_GET['media_id'])) {
+        if (isset($_GET['media_id']) && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'generate_seo_nonce')) {
             $this->update_media_seo(intval($_GET['media_id']));
-            wp_redirect($_SERVER['HTTP_REFERER']);
+            if (isset($_SERVER['HTTP_REFERER'])) {
+                $referer = esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER']));
+                wp_safe_redirect($referer);
+                exit;
+            }
             exit;
+        } else {
+            wp_die('Security check failed');
         }
     }
+
 
     private function generate_seo_content_with_openai($media_id) {
         $api_key = get_option('openai_api_key');
@@ -141,7 +148,7 @@ class Openai_Seo_Media_Plugin_Admin {
     Do not include any extra text or labels outside of this JSON structure.";
 
         $response = wp_remote_post('https://api.openai.com/v1/chat/completions', array(
-            'body' => json_encode(array(
+            'body' => wp_json_encode(array(
                 'model' => $model,
                 'messages' => array(
                     array(
@@ -213,7 +220,8 @@ class Openai_Seo_Media_Plugin_Admin {
             echo '<p style="color: red;">Advertencia: No se ha ingresado una API key de OpenAI. Por favor, ve a las configuraciones del plugin para agregarla.</p>';
         } else {
             echo '<p>Utiliza el botón de abajo para generar automáticamente contenido SEO-friendly para este archivo multimedia.</p>';
-            echo '<a href="' . admin_url('admin-ajax.php?action=generate_seo_content&media_id=' . $post->ID) . '" class="button button-primary">Generar SEO</a>';
+            $nonce = wp_create_nonce('generate_seo_nonce');
+            echo '<a href="' . esc_url(admin_url('admin-ajax.php?action=generate_seo_content&media_id=' . $post->ID . '&_wpnonce=' . $nonce)) . '" class="button button-primary">Generar SEO</a>';
         }
     }
 
@@ -236,10 +244,19 @@ class Openai_Seo_Media_Plugin_Admin {
     }
 
     public function admin_notices() {
-        if (!empty($_REQUEST['bulk_seo_generated'])) {
+        if (isset($_REQUEST['bulk_seo_generated']) && is_numeric($_REQUEST['bulk_seo_generated']) &&
+            isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'bulk_seo_generated_nonce')) {
+
             $count = intval($_REQUEST['bulk_seo_generated']);
-            printf('<div id="message" class="updated fade"><p>SEO generado para %s imágenes.</p></div>', $count);
+
+            printf(
+                '<div id="message" class="updated notice is-dismissible">
+            <p>SEO generado para %s imágenes.</p>
+        </div>',
+                esc_html($count)
+            );
         }
     }
+
 
 }

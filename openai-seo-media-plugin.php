@@ -1,11 +1,14 @@
 <?php
 /**
  * Plugin Name: OpenAI SEO Media Generator
- * Description: Genera títulos, descripciones, alt, SEO-friendly para los archivos multimedia usando la API de OpenAI.
+ * Description: Genera automáticamente títulos, descripciones y textos alternativos SEO-friendly para archivos multimedia usando OpenAI.
  * Version: 1.0
  * Author: Dagoberto Medina
  * Author URI: https://tropicaldevs.com
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
+
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
@@ -20,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'OPENAI_SEO_MEDIA_PLUGIN_VERSION', '1.0.0' );
+define( 'OPENAI_SEO_MEDIA_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
